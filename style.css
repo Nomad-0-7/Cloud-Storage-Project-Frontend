@@ -1,0 +1,161 @@
+/* 1. VARIABLES (The "Brain") */
+:root {
+  --bg-color: #0d0d0d;
+  --text-color: #ffffff;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.07);
+  --btn-primary-bg: rgba(255, 255, 255, 0.1);
+  --btn-text: #888;
+}
+
+body.light-mode {
+  --bg-color: #f5f5f7;
+  --text-color: #1d1d1f;
+  --panel-bg: rgba(255, 255, 255, 0.7); 
+  --border-color: rgba(0, 0, 0, 0.1);   
+  --input-bg: rgba(0, 0, 0, 0.05);       
+  --btn-primary-bg: #1d1d1f;             
+  --btn-text: #ffffff;
+}
+
+/* 2. BASE STYLES */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.5s ease; /* Smoothly transitions colors */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 32px;
+  border: 1px solid var(--border-color);
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. INPUTS (Using variables now) */
+input {
+  width: 100%; /* Changed from 90% to 100% to fit the panel better */
+  box-sizing: border-box; /* Ensures padding doesn't break the width */
+  padding: 14px;
+  margin-bottom: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-color); /* Linked to variable */
+  outline: none;
+}
+
+/* 4. BUTTONS (Using variables now) */
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-text);
+}
+
+.btn-google {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* --- Sign In Button Hover --- */
+.btn-primary:hover {
+  background: var(--text-color); /* Flips the color */
+  color: var(--bg-color);        /* Text takes the background color */
+  transform: translateY(-2px);   /* Subtle lift */
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* --- Google Button Hover --- */
+.btn-google:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-color);
+  transform: translateY(-2px);
+}
+
+/* Position the button fixed on the screen */
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+/* Logic: Hide the sun by default (since we start in Dark Mode) */
+.sun-icon { display: none; }
+.moon-icon { display: block; }
+
+/* Logic: When body has .light-mode, flip the icons */
+body.light-mode .sun-icon { display: block; }
+body.light-mode .moon-icon { display: none; }
+
+/* Simple hover effect */
+.theme-btn:hover {
+  transform: scale(1.1);
+  background: var(--input-bg);
+}
+
+/* --- Theme Toggle Hover --- */
+#theme-toggle:hover {
+  background: var(--input-bg);
+  transform: scale(1.05);
+}
+
+/* Add an active state for when the button is actually clicked */
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 5. FOOTER & LINKS */
+.footer-text {
+  color: var(--text-color);
+  opacity: 0.7; 
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Update the Link color */
+.footer-text a {
+  color: var(--text-color); /* This makes it white in dark, dark in light */
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent; 
+  transition: 0.3s;
+}
+
+.footer-text a:hover {
+  border-bottom: 1px solid var(--text-color); /* Sleek hover underline */
+}
