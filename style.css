@@ -95,23 +95,64 @@ button {
   transform: translateY(-2px);
 }
 
-/* Position the button fixed on the screen */
+/* Container to hold both button and label */
+.theme-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
 .theme-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.Label {
   background: var(--panel-bg);
-  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 1.2rem;
+  padding: 6px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-right: 15px; /* Space between label and button */
+  font-size: 0.85rem;
+  white-space: nowrap;
+  
+  /* Start hidden */
+  opacity: 0;
+  transform: translateX(10px);
   transition: all 0.3s ease;
+  pointer-events: none;
+}
+.theme-label {
+    margin-right: 12px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    /* No opacity or transform here makes it stay put */
+}
+/* Show label when hovering over the WRAPPER */
+.theme-wrapper:hover .Label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.theme-btn:hover {
+    background: var(--input-bg);
 }
 
 /* Logic: Hide the sun by default (since we start in Dark Mode) */
