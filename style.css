@@ -32,6 +32,38 @@ body {
   font-family: sans-serif;
 }
 
+/* Add a glowing effect to the cloud logo */
+.logo i {
+    font-size: 3rem;
+    color: var(--text-color);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* Fix the theme label animation */
+.theme-wrapper .theme-label {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    background: var(--panel-bg);
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.theme-wrapper:hover .theme-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Better input focus for that 'active' feel */
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    transition: 0.3s;
+}
+
 .glass-panel {
   background: var(--panel-bg);
   backdrop-filter: blur(20px);
